@@ -12,6 +12,7 @@ const navLinks = document.querySelector(".nav__links");
 const btnOperation = document.querySelectorAll(".operations__tab");
 const lableOperationContant = document.querySelectorAll(".operations__content");
 const operationsContainer = document.querySelector(".operations");
+const nav = document.querySelector(".nav");
 
 /////////////////////////
 //functions
@@ -35,6 +36,17 @@ const scrollIn = function (el) {
   });
 };
 
+const handleHover = function (e, opacity) {
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+    const wholeNav = [...siblings, logo];
+    wholeNav.forEach((el) =>
+      el !== e.target ? (el.style.opacity = opacity) : el
+    );
+  }
+};
 //////////////////////////
 //event handlers
 btnsOpenModal.forEach((e) => e.addEventListener("click", openModal));
@@ -62,7 +74,22 @@ document.addEventListener("keydown", function (e) {
 //     }
 //   })
 // );
-let current = 0;
+//nave hovers
+nav.addEventListener("mouseover", function (e) {
+  handleHover(e, 0.5);
+});
+nav.addEventListener("mouseout", function (e) {
+  handleHover(e, 1);
+});
+//
+const initCords = document.querySelector("#section--1").getBoundingClientRect();
+window.addEventListener("scroll", function () {
+  if (window.scrollY > initCords.y) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+  console.log(initCords.y);
+});
+
+// Operations
 operationsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
   if (!clicked) return;
