@@ -11,6 +11,7 @@ const btnFeatures = document.querySelector("btn");
 const navLinks = document.querySelector(".nav__links");
 const btnOperation = document.querySelectorAll(".operations__tab");
 const lableOperationContant = document.querySelectorAll(".operations__content");
+const operationsContainer = document.querySelector(".operations");
 
 /////////////////////////
 //functions
@@ -47,20 +48,37 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-btnOperation.forEach((el, i) =>
-  el.addEventListener("click", (e) => {
-    if (!el.classList.contains("operations__tab--active")) {
-      btnOperation.forEach((e) =>
-        e.classList.remove("operations__tab--active")
-      );
-      el.classList.add("operations__tab--active");
-      lableOperationContant.forEach((el) =>
-        el.classList.remove("operations__content--active")
-      );
-      lableOperationContant[i].classList.add("operations__content--active");
-    }
-  })
-);
+// btnOperation.forEach((el, i) =>
+//   el.addEventListener("click", (e) => {
+//     if (!el.classList.contains("operations__tab--active")) {
+//       btnOperation.forEach((e) =>
+//         e.classList.remove("operations__tab--active")
+//       );
+//       el.classList.add("operations__tab--active");
+//       lableOperationContant.forEach((el) =>
+//         el.classList.remove("operations__content--active")
+//       );
+//       lableOperationContant[i].classList.add("operations__content--active");
+//     }
+//   })
+// );
+let current = 0;
+operationsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) return;
+  if (!clicked.classList.contains("operations__tab--active")) {
+    btnOperation.forEach((el) =>
+      el.classList.remove("operations__tab--active")
+    );
+    clicked.classList.add("operations__tab--active");
+    lableOperationContant.forEach((el) =>
+      el.classList.remove("operations__content--active")
+    );
+    lableOperationContant[+clicked.getAttribute("data-tab") - 1].classList.add(
+      "operations__content--active"
+    );
+  }
+});
 
 //page navigation
 
