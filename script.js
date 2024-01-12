@@ -9,6 +9,8 @@ const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const btnFeatures = document.querySelector("btn");
 const navLinks = document.querySelector(".nav__links");
+const btnOperation = document.querySelectorAll(".operations__tab");
+const lableOperationContant = document.querySelectorAll(".operations__content");
 
 /////////////////////////
 //functions
@@ -44,6 +46,21 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+btnOperation.forEach((el, i) =>
+  el.addEventListener("click", (e) => {
+    if (!el.classList.contains("operations__tab--active")) {
+      btnOperation.forEach((e) =>
+        e.classList.remove("operations__tab--active")
+      );
+      el.classList.add("operations__tab--active");
+      lableOperationContant.forEach((el) =>
+        el.classList.remove("operations__content--active")
+      );
+      lableOperationContant[i].classList.add("operations__content--active");
+    }
+  })
+);
 
 //page navigation
 
