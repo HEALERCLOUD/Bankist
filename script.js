@@ -106,6 +106,7 @@ nav.addEventListener("mouseout", function (e) {
 const obsOptions = {
   root: null,
   threshold: 0,
+  rootMargin: `-${nav.getBoundingClientRect().height}px`,
 };
 
 const headerObserver = new IntersectionObserver(stickyNav, obsOptions);
