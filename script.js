@@ -168,13 +168,14 @@ navLinks.addEventListener("click", function (e) {
 const sectionObserver = new IntersectionObserver(
   (entries, observer) => {
     [entries] = entries;
-    if (entries.isIntersecting)
+    if (entries.isIntersecting) {
       entries.target.classList.remove("section--hidden");
-    observer.unobserve(entries.target);
+      observer.unobserve(entries.target);
+    }
   },
   {
     root: null,
-    threshold: 0.18,
+    threshold: 0.15,
   }
 );
 
