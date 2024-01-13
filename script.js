@@ -47,6 +47,12 @@ const handleHover = function (e, opacity) {
     );
   }
 };
+
+const stickyNav = function (entries) {
+  [entries] = entries;
+  if (!entries.isIntersecting) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+};
 //////////////////////////
 //event handlers
 btnsOpenModal.forEach((e) => e.addEventListener("click", openModal));
@@ -81,15 +87,30 @@ nav.addEventListener("mouseover", function (e) {
 nav.addEventListener("mouseout", function (e) {
   handleHover(e, 1);
 });
-//
-const initCords = document.querySelector("#section--1").getBoundingClientRect();
-window.addEventListener("scroll", function () {
-  if (window.scrollY > initCords.y) nav.classList.add("sticky");
-  else nav.classList.remove("sticky");
-  console.log(initCords.y);
-});
 
-// Operations
+//sticky navbar
+// const initCords = document.querySelector("#section--1").getBoundingClientRect();
+// window.addEventListener("scroll", function () {
+//   if (window.scrollY > initCords.y) nav.classList.add("sticky");
+//   else nav.classList.remove("sticky");
+// });
+//sticky navbar with intersection API
+
+// const observer1 = new IntersectionObserver((entries, observer) => {
+//   entries.forEach((el) => {
+//     // document.querySelector("#section--1").style.background = "black";
+//     console.log(el);
+//   });
+// }, obsOptions);
+// observer1.observe(document.querySelector("#section--1"));
+const obsOptions = {
+  root: null,
+  threshold: 0,
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, obsOptions);
+headerObserver.observe(document.querySelector("header"));
+
 operationsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
   if (!clicked) return;
