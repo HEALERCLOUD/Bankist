@@ -1,7 +1,7 @@
 "use strict";
 
 //////////////////
-///// buttons
+///// variables
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
@@ -13,6 +13,7 @@ const btnOperation = document.querySelectorAll(".operations__tab");
 const lableOperationContant = document.querySelectorAll(".operations__content");
 const operationsContainer = document.querySelector(".operations");
 const nav = document.querySelector(".nav");
+const allSection = document.querySelectorAll(".section");
 
 /////////////////////////
 //functions
@@ -53,6 +54,7 @@ const stickyNav = function (entries) {
   if (!entries.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
 };
+
 //////////////////////////
 //event handlers
 btnsOpenModal.forEach((e) => e.addEventListener("click", openModal));
@@ -130,11 +132,10 @@ operationsContainer.addEventListener("click", function (e) {
 });
 
 //page navigation
-
 btnScrollTo.addEventListener("click", function () {
   scrollIn(document.querySelector("#section--1"));
 });
-
+// old method
 // document.querySelectorAll(".nav__link").forEach((link) =>
 //   link.addEventListener("click", function (e) {
 //     e.preventDefault();
@@ -161,4 +162,23 @@ navLinks.addEventListener("click", function (e) {
       });
     }
   }
+});
+
+//reveal sections
+const sectionObserver = new IntersectionObserver(
+  (entries, observer) => {
+    [entries] = entries;
+    if (entries.isIntersecting)
+      entries.target.classList.remove("section--hidden");
+    observer.unobserve(entries.target);
+  },
+  {
+    root: null,
+    threshold: 0.18,
+  }
+);
+
+allSection.forEach((section) => {
+  section.classList.add("section--hidden");
+  sectionObserver.observe(section);
 });
