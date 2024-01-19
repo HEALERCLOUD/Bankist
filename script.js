@@ -150,6 +150,7 @@ operationsContainer.addEventListener("click", function (e) {
   }
 });
 
+console.log("luka");
 //page navigation
 btnScrollTo.addEventListener("click", function () {
   scrollIn(document.querySelector("#section--1"));
