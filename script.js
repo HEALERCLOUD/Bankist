@@ -150,7 +150,6 @@ operationsContainer.addEventListener("click", function (e) {
   }
 });
 
-console.log("luka");
 //page navigation
 btnScrollTo.addEventListener("click", function () {
   scrollIn(document.querySelector("#section--1"));
@@ -235,3 +234,7 @@ goToSlide();
 
 btnRight.addEventListener("click", nextSlideRight);
 btnLeft.addEventListener("click", nextSlideLeft);
+document.addEventListener("keydown", function (e) {
+  if (e.code === "ArrowRight") nextSlideRight();
+  else if (e.code === "ArrowLeft") nextSlideLeft();
+});
