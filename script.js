@@ -17,6 +17,7 @@ const allSection = document.querySelectorAll(".section");
 const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
+const dots = document.querySelector(".dots");
 
 ////////////////////////
 //global variables
@@ -62,6 +63,14 @@ const stickyNav = function (entries) {
   if (!entries.isIntersecting) nav.classList.add("sticky");
   else nav.classList.remove("sticky");
 };
+
+const goToSlide = function () {
+  slides.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
+  });
+  activateDot();
+};
+
 const nextSlideRight = function () {
   if (currentSlide < maxSlide - 1) currentSlide++;
   else currentSlide = 0;
@@ -72,6 +81,26 @@ const nextSlideLeft = function () {
   if (currentSlide === 0) currentSlide = maxSlide - 1;
   else currentSlide--;
   goToSlide();
+};
+
+const creatDots = function (e) {
+  slides.forEach((_, i) => {
+    dots.insertAdjacentHTML(
+      "beforeend",
+      `<button class="dots__dot" data-slide=${i}></button>`
+    );
+  });
+};
+
+creatDots();
+
+const activateDot = function () {
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((el) => el.classList.remove("dots__dot--active"));
+  document
+    .querySelector(`.dots__dot[data-slide="${currentSlide}"]`)
+    .classList.add("dots__dot--active");
 };
 
 //////////////////////////
@@ -101,6 +130,7 @@ document.addEventListener("keydown", function (e) {
 //     }
 //   })
 // );
+
 //nave hovers
 nav.addEventListener("mouseover", function (e) {
   handleHover(e, 0.5);
@@ -224,12 +254,6 @@ const imgObserver = new IntersectionObserver(
 imgTarget.forEach((img) => imgObserver.observe(img));
 
 //slider
-
-const goToSlide = function () {
-  slides.forEach((s, i) => {
-    s.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
-  });
-};
 goToSlide();
 
 btnRight.addEventListener("click", nextSlideRight);
@@ -237,4 +261,14 @@ btnLeft.addEventListener("click", nextSlideLeft);
 document.addEventListener("keydown", function (e) {
   if (e.code === "ArrowRight") nextSlideRight();
   else if (e.code === "ArrowLeft") nextSlideLeft();
+});
+
+//adding powerdots to dom
+
+dots.addEventListener("click", (e) => {
+  // console.log(e.target.getAttribute("data-slide"));
+  if (e.target.classList.contains("dots__dot")) {
+    currentSlide = e.target.getAttribute("data-slide");
+    goToSlide();
+  }
 });
