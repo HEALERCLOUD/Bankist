@@ -18,6 +18,7 @@ const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dots = document.querySelector(".dots");
+const sendToInside = document.querySelector(".send__to__inside");
 
 ////////////////////////
 //global variables
@@ -271,4 +272,9 @@ dots.addEventListener("click", (e) => {
     currentSlide = e.target.getAttribute("data-slide");
     goToSlide();
   }
+});
+
+sendToInside.addEventListener("click", function (e) {
+  e.preventDefault();
+  window.location.href = "Bankist_inside/index.html";
 });
