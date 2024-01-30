@@ -117,21 +117,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// btnOperation.forEach((el, i) =>
-//   el.addEventListener("click", (e) => {
-//     if (!el.classList.contains("operations__tab--active")) {
-//       btnOperation.forEach((e) =>
-//         e.classList.remove("operations__tab--active")
-//       );
-//       el.classList.add("operations__tab--active");
-//       lableOperationContant.forEach((el) =>
-//         el.classList.remove("operations__content--active")
-//       );
-//       lableOperationContant[i].classList.add("operations__content--active");
-//     }
-//   })
-// );
-
 //nave hovers
 nav.addEventListener("mouseover", function (e) {
   handleHover(e, 0.5);
@@ -141,20 +126,6 @@ nav.addEventListener("mouseout", function (e) {
 });
 
 //sticky navbar
-// const initCords = document.querySelector("#section--1").getBoundingClientRect();
-// window.addEventListener("scroll", function () {
-//   if (window.scrollY > initCords.y) nav.classList.add("sticky");
-//   else nav.classList.remove("sticky");
-// });
-//sticky navbar with intersection API
-
-// const observer1 = new IntersectionObserver((entries, observer) => {
-//   entries.forEach((el) => {
-//     // document.querySelector("#section--1").style.background = "black";
-//     console.log(el);
-//   });
-// }, obsOptions);
-// observer1.observe(document.querySelector("#section--1"));
 const obsOptions = {
   root: null,
   threshold: 0,
@@ -185,20 +156,6 @@ operationsContainer.addEventListener("click", function (e) {
 btnScrollTo.addEventListener("click", function () {
   scrollIn(document.querySelector("#section--1"));
 });
-// old method
-// document.querySelectorAll(".nav__link").forEach((link) =>
-//   link.addEventListener("click", function (e) {
-//     e.preventDefault();
-//     const id = this.getAttribute("href");
-//     const target = document.querySelector(id);
-//     const cords = target.getBoundingClientRect();
-//     window.scrollTo({
-//       left: cords.x + window.pageXOffset,
-//       top: cords.y + window.pageYOffset,
-//       behavior: "smooth",
-//     });
-//   })
-// );
 navLinks.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("nav__link")) {
@@ -265,7 +222,6 @@ document.addEventListener("keydown", function (e) {
 });
 
 //adding powerdots to dom
-
 dots.addEventListener("click", (e) => {
   // console.log(e.target.getAttribute("data-slide"));
   if (e.target.classList.contains("dots__dot")) {
