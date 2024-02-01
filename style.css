@@ -1,4 +1,5 @@
 :root {
+  --color-rare: #5f67b4;
   --color-primary: #5ec576;
   --color-secondary: #ffcb03;
   --color-tertiary: #ff585f;
@@ -173,6 +174,13 @@ img {
   padding: 0.8rem 2.5rem;
   border-radius: 3rem;
   background-color: var(--color-primary);
+  color: #222;
+}
+
+.online__bank {
+  padding: 0.8rem 2.5rem;
+  border-radius: 3rem;
+  background-color: var(--color-secondary);
   color: #222;
 }
 
