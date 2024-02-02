@@ -25,6 +25,6 @@ pin - 7777
 - Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/simple-bank-frontend.git
-cd simple-bank-frontend
+git clone https://github.com/HEALERCLOUD/Bankist.git
+cd Bankist
 ```
