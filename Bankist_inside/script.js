@@ -190,6 +190,7 @@ btnLogin.addEventListener("click", function (e) {
     }`;
     updateUi();
     containerApp.style.opacity = "100";
+    document.querySelector(".center").style.display = "none";
   }
 });
 btnTransfer.addEventListener("click", function (e) {
