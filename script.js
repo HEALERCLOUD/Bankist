@@ -19,6 +19,7 @@ const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dots = document.querySelector(".dots");
 const sendToInside = document.querySelector(".send__to__inside");
+const loader = document.querySelector(".loader");
 
 ////////////////////////
 //global variables
@@ -27,6 +28,12 @@ const maxSlide = slides.length;
 
 /////////////////////////
 //functions
+const displayLoader = function () {
+  if (loader.classList.contains("hidden")) loader.classList.remove("hidden");
+};
+const removeLoader = function () {
+  if (!loader.classList.contains("hidden")) loader.classList.add("hidden");
+};
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove("hidden");
@@ -106,6 +113,13 @@ const activateDot = function () {
 
 //////////////////////////
 //event handlers
+
+window.addEventListener("load", function () {
+  setTimeout(() => {
+    removeLoader();
+  }, 1300);
+});
+
 btnsOpenModal.forEach((e) => e.addEventListener("click", openModal));
 
 btnCloseModal.addEventListener("click", closeModal);
@@ -232,5 +246,8 @@ dots.addEventListener("click", (e) => {
 
 sendToInside.addEventListener("click", function (e) {
   e.preventDefault();
-  window.location.href = "Bankist_inside/index.html";
+  displayLoader();
+  setTimeout(() => {
+    window.location.href = "Bankist_inside/index.html";
+  }, 1000);
 });
