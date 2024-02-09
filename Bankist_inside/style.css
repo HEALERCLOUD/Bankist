@@ -112,6 +112,17 @@ nav {
   align-items: center;
   padding: 0 2rem;
 }
+#logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#welcome {
+  width: 300px;
+}
+#login {
+  width: 300px;
+}
 
 .welcome {
   font-size: 1.9rem;
