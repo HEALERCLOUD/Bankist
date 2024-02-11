@@ -7,17 +7,5 @@ pipeline {
       }
     }
 
-    stage('loging') {
-      steps {
-        sh 'ls -la'
-      }
-    }
-
-    stage('build') {
-      steps {
-        sh 'docker build -t bankist .'
-      }
-    }
-
   }
 }
