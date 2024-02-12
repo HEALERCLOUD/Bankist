@@ -114,7 +114,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // global variables
 let currentAccount;
 let sortedStatus = false;
-
+const date = new Date();
 /////////////////////////////////////////////////
 // Functions
 
