@@ -115,6 +115,13 @@ const inputClosePin = document.querySelector(".form__input--pin");
 let currentAccount;
 let sortedStatus = false;
 const date = new Date();
+const options = {
+  hour: "numeric",
+  minute: "numeric",
+  day: "numeric",
+  month: "numeric",
+  year: "numeric",
+};
 /////////////////////////////////////////////////
 // Functions
 
