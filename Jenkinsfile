@@ -3,24 +3,32 @@ pipeline {
   stages {
     stage('Checkout code') {
       steps {
-        git(url: 'https://github.com/HEALERCLOUD/Bankist', branch: 'main')
+        script{
+          git(url: 'https://github.com/HEALERCLOUD/Bankist', branch: 'main')
+        }
       }
     }
 
     stage('Logger') {
       steps {
-        sh 'ls -la'
+        script{
+          sh 'ls -la'
+        }
       }
     }
     stage('Build') {
       steps {
-        sh 'docker build -f Dockerfile .'
+        script{
+          sh 'docker build -f Dockerfile .'
+        }
       }
     }
 
     stage('Log into dockehub') {
       steps {
-        sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+        script{
+          sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+        }
       }
     }
   }
