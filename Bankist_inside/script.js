@@ -114,7 +114,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // global variables
 let currentAccount;
 let sortedStatus = false;
-const date = new Date();
+const todayDate = new Date();
 const options = {
   hour: "numeric",
   minute: "numeric",
@@ -122,6 +122,7 @@ const options = {
   month: "numeric",
   year: "numeric",
 };
+
 /////////////////////////////////////////////////
 // Functions
 
@@ -203,6 +204,15 @@ const logOutUser = function () {
   labelWelcome.textContent = "Please Login";
   containerApp.style.opacity = "0";
 };
+
+const dateFormater = function (date) {
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
+labelDate.textContent = dateFormater(todayDate);
 // event handlers
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
