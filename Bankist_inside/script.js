@@ -140,7 +140,7 @@ const displayMovements = function (acc) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__date">3 days ago</div>
+        <div class="movements__date">${todayDate}</div>
         <div class="movements__value">${
           movement > 0 ? movement : Math.abs(movement)
         }${curIcon}</div>
