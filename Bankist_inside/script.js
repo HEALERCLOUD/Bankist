@@ -126,6 +126,7 @@ const options = {
 /////////////////////////////////////////////////
 // Functions
 
+///
 const displayMovements = function (acc) {
   containerMovements.innerHTML = "";
   const curIcon = acc.currency === "EUR" ? "€" : "$";
